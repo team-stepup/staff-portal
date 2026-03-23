@@ -1,0 +1,1180 @@
+<!DOCTYPE html>
+<html lang="ja" role="application">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="format-detection" content="telephone=no, date=no, address=no, email=no, url=no">
+<meta name="robots" content="noindex, nofollow">
+<meta name="referrer" content="no-referrer">
+<title>Step Up Staff Portal</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;600;700&family=Noto+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=DM+Serif+Display&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy: #0d2137;
+  --navy-mid: #163352;
+  --blue: #1a5fa8;
+  --blue-light: #2b7fd4;
+  --gold: #c9922a;
+  --gold-light: #f0b84a;
+  --cream: #f8f6f1;
+  --white: #ffffff;
+  --text: #1a1a2e;
+  --subtext: #4a5568;
+  --border: #e2e8f0;
+  --green: #1a7a4a;
+  --green-light: #e8f5ee;
+  --red: #c0392b;
+  --red-light: #fdf0ee;
+  --radius: 14px;
+  --radius-sm: 8px;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+html {
+  -webkit-text-size-adjust: 100%;
+  height: 100%;
+}
+body {
+  font-family: 'Noto Sans JP', 'Noto Sans', sans-serif;
+  background: var(--cream);
+  color: var(--text);
+  min-height: 100vh;
+  font-size: 15px;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-y: auto;
+}
+/* ── HEADER ── */
+.site-header {
+  background: var(--navy);
+  padding: 0;
+  position: sticky;
+  top: 0;
+  z-index: 200;
+  box-shadow: 0 2px 20px rgba(0,0,0,0.25);
+}
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 18px;
+}
+.logo-area {
+  display: flex;
+  flex-direction: column;
+}
+.logo-main {
+  font-family: 'DM Serif Display', serif;
+  font-size: 19px;
+  color: var(--white);
+  letter-spacing: 0.04em;
+  line-height: 1.1;
+}
+/* ── Language Switcher ── */
+.lang-pills {
+  display: flex;
+  gap: 4px;
+}
+.lang-pill {
+  padding: 5px 11px;
+  border-radius: 999px;
+  border: 1.5px solid rgba(255,255,255,0.25);
+  background: transparent;
+  font-family: inherit;
+  font-size: 11px;
+  font-weight: 600;
+  cursor: pointer;
+  color: rgba(255,255,255,0.65);
+  transition: all 0.18s;
+  letter-spacing: 0.03em;
+}
+.lang-pill.active {
+  background: var(--gold);
+  border-color: var(--gold);
+  color: var(--navy);
+}
+.lang-code {
+  font-size: 15px;
+  font-weight: 900;
+  line-height: 1;
+  letter-spacing: 0.04em;
+  font-family: 'DM Serif Display', serif;
+}
+.lang-label {
+  font-size: 7px;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  margin-top: 4px;
+  text-transform: uppercase;
+  line-height: 1;
+}
+/* ── HERO BANNER ── */
+.hero {
+  background: linear-gradient(135deg, var(--navy-mid) 0%, var(--blue) 60%, var(--blue-light) 100%);
+  padding: 18px 20px 20px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  top: -60px; right: -60px;
+  width: 220px; height: 220px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.04);
+}
+.hero::after {
+  content: '';
+  position: absolute;
+  bottom: -40px; left: -30px;
+  width: 160px; height: 160px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.03);
+}
+.hero-label {
+  display: inline-block;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: rgba(255,255,255,0.85);
+  margin-bottom: 8px;
+}
+.hero h2 {
+  font-family: 'DM Serif Display', serif;
+  font-size: 22px;
+  color: var(--white);
+  line-height: 1.3;
+  margin-bottom: 6px;
+}
+.hero p {
+  font-size: 12px;
+  color: rgba(255,255,255,0.72);
+  line-height: 1.5;
+}
+/* ── MAIN CONTENT ── */
+.main {
+  max-width: 620px;
+  margin: 0 auto;
+  padding: 24px 16px 60px;
+}
+/* ── Section Dividers ── */
+.section-divider {
+  display: flex;
+  align-items: center;
+  margin: 22px 0 10px;
+  gap: 10px;
+}
+.section-divider::before,
+.section-divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+}
+.section-divider span {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--blue);
+  white-space: nowrap;
+}
+.section-divider.sd-notice::before { background: #c0392b; }
+.section-divider.sd-notice span    { color: #c0392b; }
+.section-divider.sd-content::before { background: var(--navy); }
+.section-divider.sd-content span    { color: var(--navy); }
+.section-divider.sd-archive::before { background: #888; }
+.section-divider.sd-archive span    { color: #888; }
+/* lang content toggle */
+.lang-content { display: none; }
+.lang-content.active { display: block; }
+/* ── NOTICE CARD ── */
+.notice-card {
+  background: var(--white);
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--gold);
+  margin-bottom: 8px;
+  box-shadow: 0 1px 6px rgba(0,0,0,0.05);
+  max-width: 100%;
+  word-break: break-word;
+  touch-action: pan-y !important;
+  -webkit-overflow-scrolling: touch;
+}
+.notice-card.expanded { border-left-color: var(--gold); }
+.notice-card-header {
+  padding: 10px 10px 10px 10px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  user-select: none;
+  touch-action: manipulation;
+  -webkit-user-select: none;
+}
+.notice-card-header:active { background: #f5f5f5; }
+.notice-icon {
+  width: 34px; height: 34px; min-width: 34px;
+  border-radius: 8px; display: flex; align-items: center;
+  justify-content: center; font-size: 16px; flex-shrink: 0;
+}
+.notice-icon.urgent { background: #fff0f0; }
+.notice-icon.info   { background: #f0f4ff; }
+.notice-icon.rule { background: #f0f4ff; }
+.notice-icon.safety { background: #fff8e6; }
+.notice-meta { flex: 1; min-width: 0; }
+.notice-tag {
+  display: inline-block; font-size: 9px; font-weight: 700;
+  padding: 2px 6px; border-radius: 20px; margin-bottom: 2px;
+  text-transform: uppercase; letter-spacing: 0.3px;
+}
+.notice-tag.urgent { background: #ffe4e4; color: #c0392b; }
+.notice-tag.info   { background: #e8eeff; color: #1a3a7a; }
+.notice-tag.rule { background: #f0f4ff; color: #4a5ff0; }
+.notice-tag.safety { background: #fff8e6; color: #b07800; }
+.notice-title {
+  font-size: 13px; font-weight: 700; color: var(--navy);
+  line-height: 1.35; word-break: break-word;
+}
+.notice-date { font-size: 10px; color: #888; margin-top: 1px; }
+.notice-chevron {
+  width: 26px; height: 26px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--navy) 0%, #2a4a8a 100%);
+  color: var(--gold);
+  font-size: 11px; font-weight: 900;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0; margin-left: 8px;
+  transition: transform 0.25s cubic-bezier(.4,0,.2,1), box-shadow 0.25s, background 0.25s;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.18), inset 0 1px 0 rgba(255,255,255,0.08);
+}
+.notice-card-header:hover .notice-chevron {
+  background: linear-gradient(135deg, #1a3a7a 0%, var(--navy) 100%);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.25), 0 0 0 2px rgba(212,175,55,0.3);
+}
+.notice-card.expanded .notice-chevron {
+  transform: rotate(180deg);
+  background: linear-gradient(135deg, #e8c84a 0%, #c8960c 100%);
+  color: var(--navy);
+  box-shadow: 0 4px 12px rgba(200,150,12,0.4), inset 0 1px 0 rgba(255,255,255,0.2);
+}
+.notice-card-body {
+  display: none;
+  padding: 10px 10px 12px;
+  border-top: 1px solid var(--border);
+}
+.notice-card.expanded .notice-card-body { display: block; }
+/* Info rows */
+.info-row {
+  display: flex; flex-direction: column; gap: 2px; padding: 7px 0;
+  border-bottom: 1px solid #f0f0f0; font-size: 13px;
+}
+.info-row:last-of-type { border-bottom: none; }
+.info-label { min-width: unset; color: #888; font-weight: 600; font-size: 10px; }
+.info-value { flex: 1; color: var(--text); line-height: 1.4; font-size: 13px; }
+.info-value.highlight { color: var(--gold); font-weight: 700; font-size: 15px; }
+.req-section { margin-top: 8px; }
+.req-section-title { font-size: 12px; font-weight: 700; color: var(--navy); margin-bottom: 6px; }
+.req-list { margin: 0; padding-left: 18px; }
+.req-list li { font-size: 12px; line-height: 1.65; color: var(--text); }
+.req-list li.optional { color: #888; }
+.note-box {
+  background: #f8f9ff; border-left: 3px solid var(--gold);
+  padding: 7px 10px; border-radius: 4px; font-size: 11px;
+  color: #555; margin-top: 8px; line-height: 1.5;
+}
+.cta-btn {
+  display: block; margin-top: 10px; padding: 11px 14px;
+  background: var(--navy); color: var(--white) !important;
+  border-radius: var(--radius-sm); text-align: center;
+  font-weight: 700; font-size: 13px; text-decoration: none;
+  min-height: 44px; display: inline-flex; align-items: center; justify-content: center;
+}
+.pdf-btn {
+  display: block; margin-top: 8px; padding: 9px 14px;
+  background: var(--white); color: var(--navy);
+  border-radius: var(--radius-sm); text-align: center;
+  font-weight: 700; font-size: 12px; text-decoration: none;
+  border: 2px solid var(--navy);
+  min-height: 44px; display: inline-flex; align-items: center; justify-content: center;
+}
+.btn-date-row {
+  display: flex; align-items: center; gap: 8px; margin-top: 5px; flex-wrap: wrap;
+}
+.btn-date-row .notice-date {
+  font-size: 10px; color: #888; font-weight: 600; letter-spacing: 0.02em;
+  position: relative; padding-left: 10px;
+}
+.btn-date-row .notice-date::before {
+  content: ''; position: absolute; left: 0; top: 50%; transform: translateY(-50%);
+  width: 1px; height: 12px; background: #ccc;
+}
+.card-link-btn {
+  display: inline-flex; align-items: center;
+  padding: 0 9px 0 7px; height: 15px;
+  background: linear-gradient(135deg, #e8c84a 0%, #c89a10 100%);
+  border: none; border-radius: 99px;
+  font-size: 9px; font-weight: 800; text-decoration: none;
+  color: var(--navy); white-space: nowrap; flex-shrink: 0;
+  letter-spacing: 0.06em; text-transform: uppercase;
+  box-shadow: 0 1px 3px rgba(180,130,0,0.25);
+  transition: box-shadow 0.15s, filter 0.15s; line-height: 1;
+  min-height: 44px; justify-content: center;
+}
+.card-link-btn::before { content: '📎'; font-size: 11px; }
+.card-link-btn:hover { filter: brightness(1.1); box-shadow: 0 3px 10px rgba(180,130,0,0.42); }
+/* Rules card */
+.rules-card {
+  background: var(--white); border-radius: 10px;
+  border: 1px solid var(--border); border-left: 4px solid #b8c8e8;
+  margin-bottom: 7px;
+  box-shadow: 0 1px 6px rgba(0,0,0,0.04);
+  max-width: 100%; word-break: break-word;
+  touch-action: pan-y !important; -webkit-overflow-scrolling: touch;
+}
+.rules-card-header {
+  padding: 10px 10px; display: flex; align-items: center; gap: 8px;
+}
+.rules-title-row {
+  display: flex; align-items: center; gap: 6px; flex-wrap: wrap;
+}
+.rules-title-row .notice-title { font-size: 13px; white-space: normal; overflow: visible; text-overflow: unset; }
+/* Archive */
+.archive-list { display: flex; flex-direction: column; gap: 10px; margin-bottom: 16px; }
+.archive-item {
+  background: var(--white); border-radius: 8px;
+  border: 1px solid var(--border); padding: 10px 12px;
+  max-width: 100%; word-break: break-word;
+  touch-action: pan-y !important; -webkit-overflow-scrolling: touch;
+}
+.archive-meta { display: flex; align-items: center; gap: 8px; margin-bottom: 4px; }
+.archive-icon { font-size: 16px; }
+.archive-date { font-size: 10px; color: #888; font-weight: 600; }
+.archive-title-row {
+  display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
+}
+.archive-title { font-size: 13px; font-weight: 600; color: var(--navy); line-height: 1.4; }
+.archive-btn {
+  display: inline-flex; align-items: center; padding: 0 9px 0 7px;
+  height: 18px; min-height: 18px;
+  background: linear-gradient(135deg, #e8c84a 0%, #c89a10 100%);
+  border-radius: 99px; font-size: 9px; font-weight: 800;
+  text-decoration: none; color: var(--navy) !important;
+  letter-spacing: 0.06em; text-transform: uppercase;
+  box-shadow: 0 1px 4px rgba(180,130,0,0.28);
+  white-space: nowrap; flex-shrink: 0;
+}
+.archive-btn:hover { filter: brightness(1.1); }
+/* Coming soon card */
+.coming-soon-card {
+  background: var(--white); border-radius: 10px;
+  border: 1px solid var(--border); border-left: 4px solid #ddd;
+  margin-bottom: 8px; padding: 10px 12px;
+  display: flex; align-items: center; gap: 10px; opacity: 0.6;
+  max-width: 100%; word-break: break-word;
+  touch-action: pan-y !important; -webkit-overflow-scrolling: touch;
+}
+.coming-soon-icon { font-size: 18px; }
+.coming-soon-text .cs-title { font-size: 13px; font-weight: 700; color: var(--navy); }
+.coming-soon-text .cs-label { font-size: 10px; color: #aaa; margin-top: 2px; text-transform: uppercase; letter-spacing: 0.05em; }
+/* ── ステップ・アップのルール card ── */
+.stepup-rules-card {
+  background: var(--white); border-radius: 12px;
+  border: 1px solid var(--border); border-left: 4px solid var(--gold);
+  margin-bottom: 8px; overflow: hidden;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+}
+.stepup-rules-header {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 12px 14px; cursor: pointer;
+  touch-action: manipulation; user-select: none; -webkit-user-select: none;
+}
+.stepup-rules-header:active { background: rgba(0,0,0,0.02); }
+.stepup-rules-left { display: flex; align-items: center; gap: 10px; }
+.stepup-rules-icon {
+  width: 36px; height: 36px; border-radius: 9px;
+  background: linear-gradient(135deg, #f0e6c0 0%, #e8d48a 100%);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 18px; flex-shrink: 0;
+}
+.stepup-rules-title { display: flex; flex-direction: column; gap: 2px; }
+.rules-tag {
+  display: inline-block; font-size: 9px; font-weight: 800;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  color: #8a6800; background: rgba(212,175,55,0.18);
+  border-radius: 4px; padding: 1px 6px; width: fit-content;
+}
+.rules-main-title { font-size: 14px; font-weight: 700; color: var(--navy); line-height: 1.3; }
+.stepup-rules-body { display: none; padding: 0 14px 12px; border-top: 1px solid var(--border); }
+.stepup-rules-card.open .stepup-rules-body { display: block; }
+.stepup-rules-card.open .notice-chevron {
+  transform: rotate(180deg);
+  background: linear-gradient(135deg, #e8c84a 0%, #c8960c 100%);
+  color: var(--navy); box-shadow: 0 4px 12px rgba(200,150,12,0.4);
+}
+/* Rules items */
+.rules-item {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 6px; padding: 9px 0;
+  border-bottom: 1px solid rgba(0,0,0,0.05); flex-wrap: nowrap;
+}
+.rules-item:last-child { border-bottom: none; }
+.rules-item-icon { font-size: 16px; width: 22px; min-width: 22px; text-align: center; flex-shrink: 0; }
+.rules-item-body {
+  flex: 1; min-width: 0; display: flex; align-items: center;
+  justify-content: space-between; gap: 6px;
+}
+.rules-item-label {
+  display: flex; align-items: center; gap: 6px;
+  font-size: 12px; font-weight: 600; color: var(--text); line-height: 1.3;
+  flex: 1; min-width: 0; flex-wrap: wrap;
+}
+.rules-item-link {
+  display: inline-flex; align-items: center;
+  padding: 0 9px 0 7px; height: 18px;
+  background: linear-gradient(135deg, #e8c84a 0%, #c89a10 100%);
+  border-radius: 99px; font-size: 9px; font-weight: 800;
+  text-decoration: none; color: var(--navy);
+  letter-spacing: 0.06em; text-transform: uppercase;
+  box-shadow: 0 1px 4px rgba(180,130,0,0.28);
+  white-space: nowrap; flex-shrink: 0;
+}
+.rules-item-link:hover { filter: brightness(1.1); }
+.rules-item-desc { display: none; }
+/* Page tabs */
+.page-tabs, .header-nav {
+  display: flex;
+  background: linear-gradient(180deg, #0a1b2e 0%, var(--navy) 100%);
+  border-top: 1px solid rgba(255,255,255,0.06);
+  padding: 6px 8px 8px;
+  gap: 6px;
+}
+.page-tab {
+  flex: 1;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 4px; padding: 10px 4px 9px;
+  border: 1.5px solid rgba(255,255,255,0.08);
+  border-radius: 12px;
+  background: rgba(255,255,255,0.03);
+  color: rgba(255,255,255,0.45);
+  font-family: inherit; font-size: 10px; font-weight: 700;
+  letter-spacing: 0.03em; cursor: pointer;
+  white-space: normal; text-align: center; line-height: 1.25;
+  transition: all 0.25s cubic-bezier(.4,0,.2,1);
+  touch-action: manipulation; -webkit-user-select: none; user-select: none;
+  position: relative; word-break: keep-all;
+}
+.page-tab:hover {
+  color: rgba(255,255,255,0.85);
+  background: rgba(255,255,255,0.06);
+  border-color: rgba(255,255,255,0.15);
+}
+.page-tab .tab-icon {
+  font-size: 20px; line-height: 1;
+  transition: transform 0.25s cubic-bezier(.4,0,.2,1);
+}
+.page-tab:hover .tab-icon { transform: translateY(-1px) scale(1.08); }
+.page-tab.active {
+  color: var(--navy);
+  background: linear-gradient(135deg, var(--gold-light) 0%, var(--gold) 100%);
+  border-color: transparent;
+  box-shadow: 0 4px 16px rgba(200,150,12,0.35), inset 0 1px 0 rgba(255,255,255,0.25);
+}
+.page-tab.active .tab-icon { transform: translateY(-1px) scale(1.1); }
+.page-tab.active::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0; height: 0;
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-top: 6px solid var(--gold);
+}
+/* Page sections */
+.page-section { display: none; }
+.page-section.active { display: block; }
+/* ── FOOTER ── */
+.site-footer { background: var(--navy); padding: 16px 12px; text-align: center; }
+.site-footer p { font-size: 11px; color: rgba(255,255,255,0.45); line-height: 1.8; }
+.site-footer a { color: var(--gold-light); text-decoration: none; }
+/* Hero watermark */
+.hero-watermark {
+  position: absolute; top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: 'DM Serif Display', serif;
+  font-size: clamp(40px, 15vw, 80px); font-weight: 700;
+  color: rgba(255, 255, 255, 0.08);
+  letter-spacing: 0.15em; white-space: nowrap;
+  pointer-events: none; user-select: none; z-index: 0;
+  text-transform: uppercase;
+  background: linear-gradient(135deg, rgba(255,255,255,0.12) 0%, rgba(212,175,55,0.10) 50%, rgba(255,255,255,0.06) 100%);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text; filter: blur(0.3px);
+}
+.hero > *:not(.hero-watermark) { position: relative; z-index: 1; }
+/* ── Mobile scroll fix ── */
+*, *::before, *::after { box-sizing: border-box; }
+html { height: 100%; overflow-x: hidden; -webkit-text-size-adjust: none; }
+body { height: 100%; overflow-x: hidden; overflow-y: auto; -webkit-overflow-scrolling: touch; overscroll-behavior-y: auto; }
+.lang-pill { transform: none !important; will-change: auto !important; }
+.lang-pill:hover { transform: none !important; }
+.lang-pill.active { transform: none !important; box-shadow: 0 0 0 2px rgba(212,175,55,0.6), 0 4px 16px rgba(200,150,12,0.4) !important; }
+.lang-content.active .notice-card, .lang-content.active .coming-soon-card { animation: none !important; }
+.main { position: relative; z-index: 1; padding: 16px 12px 60px; }
+.site-header { z-index: 100; }
+.hero { z-index: 1; padding: 14px 16px 16px; }
+.header-inner { padding: 10px 12px; gap: 8px; }
+.logo-main { font-size: 18px; line-height: 1.1; }
+.lang-pills { gap: 5px; flex-shrink: 0; }
+.lang-pill { width: 58px; height: 52px; border-radius: 12px; padding: 6px 4px; }
+.hero-label { font-size: 11px; margin-bottom: 4px; }
+.hero h2 { font-size: 20px; margin-bottom: 4px; }
+.hero p { font-size: 11px; }
+.section-divider { margin: 16px 0 8px; }
+* { -webkit-touch-callout: none; }
+html, body { -webkit-text-size-adjust: none; }
+html { -webkit-user-select: none; }
+input, textarea, [contenteditable] { -webkit-user-select: auto; }
+p, div, span, li { -webkit-touch-callout: none; }
+</style>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  document.querySelectorAll('.notice-card-header').forEach(function(header) {
+    header.addEventListener('click', function() {
+      var card = this.closest('.notice-card');
+      card.classList.toggle('expanded');
+    });
+  });
+});
+var NOTICE = {ja:"https://acrobat.adobe.com/id/urn:aaid:sc:AP:6e0feb91-3818-41b0-8b35-704757b1d8cf", pt:"https://acrobat.adobe.com/id/urn:aaid:sc:AP:a1797b49-c5d6-4d5f-83d5-9f3b1a755f7e", en:"https://acrobat.adobe.com/id/urn:aaid:sc:AP:33619212-5aba-4046-a49a-81e916e35278"};
+var RULES = {ja:"https://acrobat.adobe.com/id/urn:aaid:sc:AP:a9422baf-04cb-41cd-8a07-8c3d3709f06e", pt:"https://acrobat.adobe.com/id/urn:aaid:sc:AP:277b0aa8-87cc-439f-aab3-da05e7dc0b72", en:"https://acrobat.adobe.com/id/urn:aaid:sc:AP:fb6ab887-ba0b-490b-b813-a6ef66457881"};
+window.addEventListener('DOMContentLoaded', function() {
+  ['ja','pt','en'].forEach(function(lang) {
+    var n = document.getElementById('pdf-notice-'+lang);
+    if(n){ n.href=NOTICE[lang]; n.target='_blank'; }
+    var hn = document.getElementById('hdr-link-'+lang);
+    if(hn){ hn.href=NOTICE[lang]; hn.target='_blank'; }
+    var r = document.getElementById('pdf-rules-'+lang);
+    if(r){ r.href=RULES[lang]; r.target='_blank'; }
+    var hr = document.getElementById('pdf-rules-'+lang+'-hdr');
+    if(hr){ hr.href=RULES[lang]; hr.target='_blank'; }
+  });
+});
+var i18n = {
+  ja:{logoSub:'スタッフポータル',heroLabel:'有限会社ステップ・アップ',heroTitle:'スタッフポータルサイト',heroDesc:'就業規則・連絡事項・教育資料をご確認ください'},
+  pt:{logoSub:'Portal do Funcionário',heroLabel:'Step Up Ltda.',heroTitle:'Portal do Funcionário',heroDesc:'Consulte regulamentos, avisos e materiais de treinamento'},
+  en:{logoSub:'Staff Portal',heroLabel:'Step Up Co., Ltd.',heroTitle:'Staff Portal',heroDesc:'Work rules, notices, and training materials'}
+};
+var currentPage = 'home';
+function switchPage(page) {
+  currentPage = page;
+  document.querySelectorAll('.page-tab').forEach(function(t) {
+    t.classList.toggle('active', t.dataset.page === page);
+  });
+  document.querySelectorAll('.page-section').forEach(function(s) {
+    if (s.dataset.page === page) { s.classList.add('active'); } else { s.classList.remove('active'); }
+  });
+  window.scrollTo({top: 0, behavior: 'smooth'});
+}
+var tabLabels = {
+  ja: {home:'ホーム', kiyosoku:'就業規則、社内ルール', education:'教育資料'},
+  pt: {home:'Início', kiyosoku:'Regras Internas', education:'Educação'},
+  en: {home:'Home', kiyosoku:'Work & Internal Rules', education:'Education'}
+};
+function switchLang(lang) {
+  document.querySelectorAll('.lang-content').forEach(function(el){el.classList.remove('active');});
+  document.querySelectorAll('.lang-pill').forEach(function(el){el.classList.remove('active');});
+  document.getElementById('lang-'+lang).classList.add('active');
+  var b=document.querySelector('.lang-pill[data-lang="'+lang+'"]');
+  if(b) b.classList.add('active');
+  var t=i18n[lang];
+  document.getElementById('hero-label').textContent=t.heroLabel;
+  document.getElementById('hero-title').textContent=t.heroTitle;
+  document.getElementById('hero-desc').textContent=t.heroDesc;
+  document.documentElement.lang=lang==='ja'?'ja':lang==='pt'?'pt-BR':'en';
+  var tl = tabLabels[lang] || tabLabels['ja'];
+  var lh = document.getElementById('tab-label-home');
+  var lk = document.getElementById('tab-label-kiyosoku');
+  var le = document.getElementById('tab-label-education');
+  if(lh) lh.textContent = tl.home;
+  if(lk) lk.textContent = tl.kiyosoku;
+  if(le) le.textContent = tl.education;
+  switchPage(currentPage);
+}
+</script>
+</head>
+<body role="application" aria-label="Step Up Staff Portal">
+<header class="site-header">
+  <div class="header-inner">
+    <div class="logo-area">
+      <div class="logo-main">Step Up</div>
+    </div>
+    <div class="lang-pills">
+      <button class="lang-pill active" data-lang="ja" onclick="switchLang('ja')">
+        <span class="lang-code">JP</span>
+        <span class="lang-label">日本語</span>
+      </button>
+      <button class="lang-pill" data-lang="pt" onclick="switchLang('pt')">
+        <span class="lang-code">BR</span>
+        <span class="lang-label">PORTUGUÊS</span>
+      </button>
+      <button class="lang-pill" data-lang="en" onclick="switchLang('en')">
+        <span class="lang-code">US</span>
+        <span class="lang-label">ENGLISH</span>
+      </button>
+    </div>
+  </div>
+  <nav class="header-nav" id="page-tabs">
+    <button class="page-tab active" data-page="home" onclick="switchPage('home')">
+      <span class="tab-icon">🏠</span>
+      <span class="tab-label" id="tab-label-home">ホーム</span>
+    </button>
+    <button class="page-tab" data-page="kiyosoku" onclick="switchPage('kiyosoku')">
+      <span class="tab-icon">📖</span>
+      <span class="tab-label" id="tab-label-kiyosoku">就業規則、社内ルール</span>
+    </button>
+    <button class="page-tab" data-page="education" onclick="switchPage('education')">
+      <span class="tab-icon">⛑️</span>
+      <span class="tab-label" id="tab-label-education">教育資料</span>
+    </button>
+  </nav>
+</header>
+<div class="hero">
+  <div class="hero-watermark">Step Up</div>
+  <div class="hero-label" id="hero-label">有限会社ステップ・アップ</div>
+  <h2 id="hero-title">スタッフポータルサイト</h2>
+  <div id="hero-desc">就業規則・連絡事項・教育資料をご確認ください</div>
+</div>
+<main class="main" role="application">
+  <!-- ══ 日本語 ══ -->
+  <div class="lang-content active" id="lang-ja">
+    <div class="page-section active" data-page="home">
+      <div class="section-divider sd-notice"><span>お知らせ</span></div>
+    <div class="notice-card">
+      <div class="notice-card-header">
+        <div class="notice-icon info">🚲</div>
+        <div class="notice-meta">
+          <span class="notice-tag info">法令改正</span>
+          <div class="notice-title">道路交通法の改正（自転車を含む）</div>
+          <div class="btn-date-row"><a class="card-link-btn" href="https://drive.google.com/file/d/1ywPud3QsLNpCxdaXFZfZbc533LWYeoO3/view?usp=drive_link" target="_blank" onclick="event.stopPropagation()">動画</a><div class="notice-date">2026年4月1日より施行</div></div>
+        </div>
+        <span class="notice-chevron">▼</span>
+      </div>
+      <div class="notice-card-body">
+        <div class="info-row">
+          <div class="info-label">📅 施行日</div>
+          <div class="info-value highlight">2026年4月1日</div>
+        </div>
+        <div class="info-row">
+          <div class="info-label">📋 主な改正内容</div>
+          <div class="info-value">自転車運転中のスマートフォン使用・酒気帯び運転への罰則強化</div>
+        </div>
+        <div class="note-box">※ 違反した場合、刑事罰の対象となる場合があります。安全運転を心がけてください。</div>
+      </div>
+    </div>
+    <div class="notice-card">
+      <div class="notice-card-header">
+        <div class="notice-icon info">👶</div>
+        <div class="notice-meta">
+          <span class="notice-tag info">制度案内</span>
+          <div class="notice-title">こども・子育て支援金制度について</div>
+          <div class="btn-date-row"><a class="card-link-btn" href="https://acrobat.adobe.com/id/urn:aaid:sc:ap:70cd0fa7-059c-408f-877d-40e3f12bd95e" target="_blank" onclick="event.stopPropagation()">資料</a><div class="notice-date">2026年4月1日より開始</div></div>
+        </div>
+        <span class="notice-chevron">▼</span>
+      </div>
+      <div class="notice-card-body">
+        <div class="info-row">
+          <div class="info-label">📅 開始日</div>
+          <div class="info-value highlight">2026年4月1日</div>
+        </div>
+        <div class="info-row">
+          <div class="info-label">💴 給与への影響</div>
+          <div class="info-value">4月より給与明細に新たな控除項目が追加されます</div>
+        </div>
+      </div>
+    </div>
+      <div class="section-divider sd-archive"><span>過去のお知らせ</span></div>
+      <div class="archive-list">
+        <div class="archive-item">
+          <div class="archive-meta">
+            <span class="archive-icon">📋</span>
+            <span class="archive-date">2026年3月</span>
+          </div>
+          <div class="archive-title-row">
+            <div class="archive-title">労働者代表立候補者案内</div>
+            <a class="archive-btn" href="https://acrobat.adobe.com/id/urn:aaid:sc:AP:fb28963b-6544-4062-b8c1-91555bb25454" target="_blank">資料</a>
+          </div>
+        </div>
+        <div class="archive-item">
+          <div class="archive-meta">
+            <span class="archive-icon">📋</span>
+            <span class="archive-date">2026年2月25日</span>
+          </div>
+          <div class="archive-title-row">
+            <div class="archive-title">R8年度 従業員代表選出 立候補者募集</div>
+            <a class="archive-btn" href="https://acrobat.adobe.com/id/urn:aaid:sc:AP:6e0feb91-3818-41b0-8b35-704757b1d8cf" target="_blank">資料</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="page-section" data-page="kiyosoku">
+      <div class="section-divider sd-content"><span>就業規則・社内ルール</span></div>
+      <div class="rules-card">
+        <div class="rules-card-header">
+          <div class="notice-icon info">📖</div>
+          <div class="notice-meta">
+            <span class="notice-tag info">就業規則</span>
+            <div class="rules-title-row">
+              <div class="notice-title">就業規則【派遣】</div>
+              <a class="card-link-btn" href="https://acrobat.adobe.com/id/urn:aaid:sc:AP:a9422baf-04cb-41cd-8a07-8c3d3709f06e" target="_blank" onclick="event.stopPropagation()">資料</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="stepup-rules-card open">
+        <div class="stepup-rules-header" onclick="this.parentElement.classList.toggle('open')">
+          <div class="stepup-rules-left">
+            <div class="stepup-rules-icon">📋</div>
+            <div class="stepup-rules-title">
+              <span class="rules-tag">会社ルール</span>
+              <div class="rules-main-title">社内ルール</div>
+            </div>
+          </div>
+          <span class="notice-chevron">▼</span>
+        </div>
+        <div class="stepup-rules-body">
+          <div class="rules-item">
+            <span class="rules-item-icon">💴</span>
+            <div class="rules-item-body">
+              <div class="rules-item-label">前払い制度について<a class="rules-item-link" href="https://drive.google.com/file/d/1swYySIx5S57i2exn9wGO5-MwP4l2cU1P/view?usp=sharing" target="_blank">動画</a></div>
+            </div>
+          </div>
+          <div class="rules-item">
+            <span class="rules-item-icon">📝</span>
+            <div class="rules-item-body">
+              <div class="rules-item-label">会社への登録内容に変更があった場合<a class="rules-item-link" href="https://acrobat.adobe.com/id/urn:aaid:sc:AP:a15f9b6b-9a09-4d75-8417-8a570cb30982" target="_blank">資料</a></div>
+            </div>
+          </div>
+          <div class="rules-item">
+            <span class="rules-item-icon">💰</span>
+            <div class="rules-item-body">
+              <div class="rules-item-label">給料明細の内容<a class="rules-item-link" href="https://acrobat.adobe.com/id/urn:aaid:sc:ap:ce9938d7-2baf-452d-858f-e6acd473bc56" target="_blank" onclick="event.stopPropagation()">資料</a></div>
+            </div>
+          </div>
+          <div class="rules-item">
+            <span class="rules-item-icon">🚗</span>
+            <div class="rules-item-body">
+              <div class="rules-item-label">自動車・バイクで通勤される方<a class="rules-item-link" href="https://acrobat.adobe.com/id/urn:aaid:sc:AP:ce9e6741-7eba-4d96-a72f-d011da3c4364" target="_blank">資料</a></div>
+            </div>
+          </div>
+          <div class="rules-item">
+            <span class="rules-item-icon">🚲</span>
+            <div class="rules-item-body">
+              <div class="rules-item-label">自転車で通勤される方<a class="rules-item-link" href="https://acrobat.adobe.com/id/urn:aaid:sc:AP:993efb99-3d47-4565-a64c-fcb0f8ea6383" target="_blank">資料</a></div>
+            </div>
+          </div>
+          <div class="rules-item">
+            <span class="rules-item-icon">🚌</span>
+            <div class="rules-item-body">
+              <div class="rules-item-label">送迎を利用される方<a class="rules-item-link" href="https://acrobat.adobe.com/id/urn:aaid:sc:AP:72a22282-9b1a-41f2-9e21-8fab38a912a8" target="_blank">資料</a></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="page-section" data-page="education">
+      <div class="section-divider sd-content"><span>安全衛生教育</span></div>
+      <div class="rules-card">
+        <div class="rules-card-header">
+          <div class="notice-icon info">⛑️</div>
+          <div class="notice-meta">
+            <span class="notice-tag info">安全衛生教育</span>
+            <div class="rules-title-row">
+              <div class="notice-title">安全衛生教育資料</div>
+              <a class="card-link-btn" href="https://drive.google.com/file/d/1BXpT4vT513iT1Bwy1QKaar6tYZmB8xbC/view?usp=drive_link" target="_blank" onclick="event.stopPropagation()">動画</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="rules-card">
+        <div class="rules-card-header">
+          <div class="notice-icon info">🚗</div>
+          <div class="notice-meta">
+            <span class="notice-tag info">安全運転教育</span>
+            <div class="rules-title-row">
+              <div class="notice-title">安全運転教育</div>
+              <a class="card-link-btn" href="https://drive.google.com/file/d/1nh7BtaUGVQu7KAPm3T85QsioTptOt2cP/view?usp=drive_link" target="_blank" onclick="event.stopPropagation()">動画</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- ══ Português ══ -->
+  <div class="lang-content" id="lang-pt">
+    <div class="page-section active" data-page="home">
+      <div class="section-divider sd-notice"><span>Avisos</span></div>
+    <div class="notice-card">
+      <div class="notice-card-header">
+        <div class="notice-icon info">🚲</div>
+        <div class="notice-meta">
+          <span class="notice-tag info">Alteração Legal</span>
+          <div class="notice-title">Alteração no Código de Trânsito (incluindo bicicletas)</div>
+          <div class="btn-date-row"><a class="card-link-btn" href="https://drive.google.com/file/d/1NmIPP-pKoPEv-ASZw2XfQ23FS5zxEnP9/view?usp=drive_link" target="_blank" onclick="event.stopPropagation()">動画</a><div class="notice-date">Em vigor a partir de 1º de abril de 2026</div></div>
+        </div>
+        <span class="notice-chevron">▼</span>
+      </div>
+      <div class="notice-card-body">
+        <div class="info-row">
+          <div class="info-label">📅 Vigência</div>
+          <div class="info-value highlight">1º de abril de 2026</div>
+        </div>
+        <div class="info-row">
+          <div class="info-label">📋 Principais mudanças</div>
+          <div class="info-value">Penalidades mais severas pelo uso de smartphone e consumo de álcool ao andar de bicicleta</div>
+        </div>
+      </div>
+    </div>
+    <div class="notice-card">
+      <div class="notice-card-header">
+        <div class="notice-icon info">👶</div>
+        <div class="notice-meta">
+          <span class="notice-tag info">Novo Sistema</span>
+          <div class="notice-title">Sistema de Apoio à Criança e à Família</div>
+          <div class="btn-date-row"><a class="card-link-btn" href="https://acrobat.adobe.com/id/urn:aaid:sc:ap:70cd0fa7-059c-408f-877d-40e3f12bd95e" target="_blank" onclick="event.stopPropagation()">資料</a><div class="notice-date">A partir de 1º de abril de 2026</div></div>
+        </div>
+        <span class="notice-chevron">▼</span>
+      </div>
+      <div class="notice-card-body">
+        <div class="info-row">
+          <div class="info-label">📅 Início</div>
+          <div class="info-value highlight">1º de abril de 2026</div>
+        </div>
+        <div class="info-row">
+          <div class="info-label">💴 Impacto no salário</div>
+          <div class="info-value">Nova dedução no holerite a partir de abril</div>
+        </div>
+      </div>
+    </div>
+      <div class="section-divider sd-archive"><span>Avisos Anteriores</span></div>
+      <div class="archive-list">
+        <div class="archive-item">
+          <div class="archive-meta">
+            <span class="archive-icon">📋</span>
+            <span class="archive-date">Março de 2026</span>
+          </div>
+          <div class="archive-title-row">
+            <div class="archive-title">Informação sobre Candidatos a Representante dos Trabalhadores</div>
+            <a class="archive-btn" href="https://acrobat.adobe.com/id/urn:aaid:sc:AP:2bb25dbb-b20f-4faf-b664-8db703ef19b3" target="_blank">資料</a>
+          </div>
+        </div>
+        <div class="archive-item">
+          <div class="archive-meta">
+            <span class="archive-icon">📋</span>
+            <span class="archive-date">25/02/2026</span>
+          </div>
+          <div class="archive-title-row">
+            <div class="archive-title">Seleção de Representante dos Funcionários — Ano Fiscal R8</div>
+            <a class="archive-btn" href="https://acrobat.adobe.com/id/urn:aaid:sc:AP:a1797b49-c5d6-4d5f-83d5-9f3b1a755f7e" target="_blank">資料</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="page-section" data-page="kiyosoku">
+      <div class="section-divider sd-content"><span>Regulamento Interno</span></div>
+      <div class="rules-card">
+        <div class="rules-card-header">
+          <div class="notice-icon info">📖</div>
+          <div class="notice-meta">
+            <span class="notice-tag info">Regulamento</span>
+            <div class="rules-title-row">
+              <div class="notice-title">Regulamento Interno【Trabalhadores Temporários】</div>
+              <a class="card-link-btn" href="https://acrobat.adobe.com/id/urn:aaid:sc:AP:277b0aa8-87cc-439f-aab3-da05e7dc0b72" target="_blank" onclick="event.stopPropagation()">資料</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="stepup-rules-card open">
+        <div class="stepup-rules-header" onclick="this.parentElement.classList.toggle('open')">
+          <div class="stepup-rules-left">
+            <div class="stepup-rules-icon">📋</div>
+            <div class="stepup-rules-title">
+              <span class="rules-tag">Regras</span>
+              <div class="rules-main-title">Regras Internas</div>
+            </div>
+          </div>
+          <span class="notice-chevron">▼</span>
+        </div>
+        <div class="stepup-rules-body">
+          <div class="rules-item">
+            <span class="rules-item-icon">💴</span>
+            <div class="rules-item-body">
+              <div class="rules-item-label">Sobre o sistema de pagamento antecipado<a class="rules-item-link" href="https://drive.google.com/file/d/1H76S0F25x0PmLQrAfOj2H7XGsHAnC1bX/view?usp=sharing" target="_blank">動画</a></div>
+            </div>
+          </div>
+          <div class="rules-item">
+            <span class="rules-item-icon">📝</span>
+            <div class="rules-item-body">
+              <div class="rules-item-label">Alteração de dados cadastrais na empresa<a class="rules-item-link" href="https://acrobat.adobe.com/id/urn:aaid:sc:AP:9c6027ba-8c61-4d1c-80f6-fe8f22e8b5b2" target="_blank">資料</a></div>
+            </div>
+          </div>
+          <div class="rules-item">
+            <span class="rules-item-icon">💰</span>
+            <div class="rules-item-body">
+              <div class="rules-item-label">Conteúdo do holerite<a class="rules-item-link" href="https://acrobat.adobe.com/id/urn:aaid:sc:ap:ce9938d7-2baf-452d-858f-e6acd473bc56" target="_blank" onclick="event.stopPropagation()">資料</a></div>
+            </div>
+          </div>
+          <div class="rules-item">
+            <span class="rules-item-icon">🚗</span>
+            <div class="rules-item-body">
+              <div class="rules-item-label">Para quem vai de carro ou moto<a class="rules-item-link" href="https://acrobat.adobe.com/id/urn:aaid:sc:AP:72b6f805-4c31-4503-8245-7aa6a38871f9" target="_blank">資料</a></div>
+            </div>
+          </div>
+          <div class="rules-item">
+            <span class="rules-item-icon">🚲</span>
+            <div class="rules-item-body">
+              <div class="rules-item-label">Para quem vai de bicicleta<a class="rules-item-link" href="https://acrobat.adobe.com/id/urn:aaid:sc:AP:46ce71b4-6086-49a8-b639-0b9c6fbc301d" target="_blank">資料</a></div>
+            </div>
+          </div>
+          <div class="rules-item">
+            <span class="rules-item-icon">🚌</span>
+            <div class="rules-item-body">
+              <div class="rules-item-label">Para quem usa o transporte da empresa<a class="rules-item-link" href="https://acrobat.adobe.com/id/urn:aaid:sc:AP:daa80ed7-a21b-4f27-a296-bea279e6569c" target="_blank">資料</a></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="page-section" data-page="education">
+      <div class="section-divider sd-content"><span>Educação em Segurança</span></div>
+      <div class="rules-card">
+        <div class="rules-card-header">
+          <div class="notice-icon info">⛑️</div>
+          <div class="notice-meta">
+            <span class="notice-tag info">Segurança</span>
+            <div class="rules-title-row">
+              <div class="notice-title">Material de Segurança e Saúde Ocupacional</div>
+              <a class="card-link-btn" href="https://drive.google.com/file/d/1HmFbkfA0NQ2zqAjAUfp1bbfYwuXkTnet/view?usp=drive_link" target="_blank" onclick="event.stopPropagation()">動画</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="rules-card">
+        <div class="rules-card-header">
+          <div class="notice-icon info">🚗</div>
+          <div class="notice-meta">
+            <span class="notice-tag info">安全運転教育</span>
+            <div class="rules-title-row">
+              <div class="notice-title">Educação para Direção Segura</div>
+              <a class="card-link-btn" href="https://drive.google.com/file/d/1dh0_6w8qtcWf4CVMZ1UJZSfBiT7v3c0W/view?usp=drive_link" target="_blank" onclick="event.stopPropagation()">動画</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- ══ English ══ -->
+  <div class="lang-content" id="lang-en">
+    <div class="page-section active" data-page="home">
+      <div class="section-divider sd-notice"><span>Notices</span></div>
+    <div class="notice-card">
+      <div class="notice-card-header">
+        <div class="notice-icon info">🚲</div>
+        <div class="notice-meta">
+          <span class="notice-tag info">Law Update</span>
+          <div class="notice-title">Road Traffic Law Revision (incl. bicycles)</div>
+          <div class="btn-date-row"><div class="notice-date">Effective April 1, 2026</div></div>
+        </div>
+        <span class="notice-chevron">▼</span>
+      </div>
+      <div class="notice-card-body">
+        <div class="info-row">
+          <div class="info-label">📅 Effective</div>
+          <div class="info-value highlight">April 1, 2026</div>
+        </div>
+        <div class="info-row">
+          <div class="info-label">📋 Key changes</div>
+          <div class="info-value">Stricter penalties for smartphone use and alcohol while cycling</div>
+        </div>
+      </div>
+    </div>
+    <div class="notice-card">
+      <div class="notice-card-header">
+        <div class="notice-icon info">👶</div>
+        <div class="notice-meta">
+          <span class="notice-tag info">New System</span>
+          <div class="notice-title">Child &amp; Family Support Contribution System</div>
+          <div class="btn-date-row"><a class="card-link-btn" href="https://acrobat.adobe.com/id/urn:aaid:sc:ap:70cd0fa7-059c-408f-877d-40e3f12bd95e" target="_blank" onclick="event.stopPropagation()">資料</a><div class="notice-date">Starting April 1, 2026</div></div>
+        </div>
+        <span class="notice-chevron">▼</span>
+      </div>
+      <div class="notice-card-body">
+        <div class="info-row">
+          <div class="info-label">📅 Start date</div>
+          <div class="info-value highlight">April 1, 2026</div>
+        </div>
+        <div class="info-row">
+          <div class="info-label">💴 Payroll impact</div>
+          <div class="info-value">New deduction item starting April</div>
+        </div>
+      </div>
+    </div>
+      <div class="section-divider sd-archive"><span>Past Notices</span></div>
+      <div class="archive-list">
+        <div class="archive-item">
+          <div class="archive-meta">
+            <span class="archive-icon">📋</span>
+            <span class="archive-date">March 2026</span>
+          </div>
+          <div class="archive-title-row">
+            <div class="archive-title">Worker Representative Candidate Information</div>
+            <a class="archive-btn" href="https://acrobat.adobe.com/id/urn:aaid:sc:AP:b0749239-1fb6-4aec-8e8d-85cd5be184df" target="_blank">資料</a>
+          </div>
+        </div>
+        <div class="archive-item">
+          <div class="archive-meta">
+            <span class="archive-icon">📋</span>
+            <span class="archive-date">February 25, 2026</span>
+          </div>
+          <div class="archive-title-row">
+            <div class="archive-title">Employee Representative Selection — Fiscal Year R8</div>
+            <a class="archive-btn" href="https://acrobat.adobe.com/id/urn:aaid:sc:AP:33619212-5aba-4046-a49a-81e916e35278" target="_blank">資料</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="page-section" data-page="kiyosoku">
+      <div class="section-divider sd-content"><span>Work & Internal Rules</span></div>
+      <div class="rules-card">
+        <div class="rules-card-header">
+          <div class="notice-icon info">📖</div>
+          <div class="notice-meta">
+            <span class="notice-tag info">Work Rules</span>
+            <div class="rules-title-row">
+              <div class="notice-title">Work Rules &amp; Regulations【Dispatched Workers】</div>
+              <a class="card-link-btn" href="https://acrobat.adobe.com/id/urn:aaid:sc:AP:fb6ab887-ba0b-490b-b813-a6ef66457881" target="_blank" onclick="event.stopPropagation()">資料</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="stepup-rules-card open">
+        <div class="stepup-rules-header" onclick="this.parentElement.classList.toggle('open')">
+          <div class="stepup-rules-left">
+            <div class="stepup-rules-icon">📋</div>
+            <div class="stepup-rules-title">
+              <span class="rules-tag">Rules</span>
+              <div class="rules-main-title">Internal Rules</div>
+            </div>
+          </div>
+          <span class="notice-chevron">▼</span>
+        </div>
+        <div class="stepup-rules-body">
+          <div class="rules-item">
+            <span class="rules-item-icon">💴</span>
+            <div class="rules-item-body">
+              <div class="rules-item-label">About the advance payment system<a class="rules-item-link" href="https://acrobat.adobe.com/id/urn:aaid:sc:AP:7c2852b4-8d83-4562-90c2-37a567101764" target="_blank">資料</a></div>
+            </div>
+          </div>
+          <div class="rules-item">
+            <span class="rules-item-icon">📝</span>
+            <div class="rules-item-body">
+              <div class="rules-item-label">When your registered info changes<a class="rules-item-link" href="https://acrobat.adobe.com/id/urn:aaid:sc:ap:9b017c77-43d1-4908-a612-c029ecf43f21" target="_blank">資料</a></div>
+            </div>
+          </div>
+          <div class="rules-item">
+            <span class="rules-item-icon">💰</span>
+            <div class="rules-item-body">
+              <div class="rules-item-label">About your pay slip<a class="rules-item-link" href="https://acrobat.adobe.com/id/urn:aaid:sc:ap:ce9938d7-2baf-452d-858f-e6acd473bc56" target="_blank" onclick="event.stopPropagation()">資料</a></div>
+            </div>
+          </div>
+          <div class="rules-item">
+            <span class="rules-item-icon">🚗</span>
+            <div class="rules-item-body">
+              <div class="rules-item-label">Commuting by car or motorcycle<a class="rules-item-link" href="https://acrobat.adobe.com/id/urn:aaid:sc:AP:d6a1bd08-f67b-4013-be6a-4e409287caff" target="_blank">資料</a></div>
+            </div>
+          </div>
+          <div class="rules-item">
+            <span class="rules-item-icon">🚲</span>
+            <div class="rules-item-body">
+              <div class="rules-item-label">Commuting by bicycle<a class="rules-item-link" href="https://acrobat.adobe.com/id/urn:aaid:sc:AP:1204558a-23e2-484f-8321-ba68edb21809" target="_blank">資料</a></div>
+            </div>
+          </div>
+          <div class="rules-item">
+            <span class="rules-item-icon">🚌</span>
+            <div class="rules-item-body">
+              <div class="rules-item-label">Using company shuttle service<a class="rules-item-link" href="https://acrobat.adobe.com/id/urn:aaid:sc:AP:b6ad4774-73d7-4e2a-9f8b-904acfc4fcd5" target="_blank">資料</a></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="page-section" data-page="education">
+      <div class="section-divider sd-content"><span>Safety Education</span></div>
+      <div class="rules-card">
+        <div class="rules-card-header">
+          <div class="notice-icon info">⛑️</div>
+          <div class="notice-meta">
+            <span class="notice-tag info">Safety</span>
+            <div class="rules-title-row">
+              <div class="notice-title">Safety &amp; Health Education Materials</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+<footer class="site-footer">
+  <div style="color:var(--gold);font-weight:700;">有限会社ステップ・アップ / Step Up Co.,Ltd</div>
+</footer>
+<script>
+var pageHistory=[];
+var origSwitchPage=switchPage;
+switchPage=function(page){
+  if(currentPage && currentPage!==page){
+    pageHistory.push(currentPage);
+    history.pushState({page:page},'',location.pathname+'#'+page);
+  }
+  currentPage=page;
+  document.querySelectorAll('.page-tab').forEach(function(t){
+    t.classList.toggle('active',t.dataset.page===page);
+  });
+  document.querySelectorAll('.page-section').forEach(function(s){
+    if(s.dataset.page===page){s.classList.add('active');}else{s.classList.remove('active');}
+  });
+  window.scrollTo({top:0,behavior:'smooth'});
+};
+function goBack(){
+  if(pageHistory.length>0){
+    var prev=pageHistory.pop();
+    currentPage=prev;
+    document.querySelectorAll('.page-tab').forEach(function(t){
+      t.classList.toggle('active',t.dataset.page===prev);
+    });
+    document.querySelectorAll('.page-section').forEach(function(s){
+      if(s.dataset.page===prev){s.classList.add('active');}else{s.classList.remove('active');}
+    });
+    history.replaceState({page:prev},'',location.pathname+'#'+prev);
+    window.scrollTo({top:0,behavior:'smooth'});
+  } else {
+    switchPage('kiyosoku');
+  }
+}
+window.addEventListener('popstate',function(e){
+  if(e.state && e.state.page){
+    var page=e.state.page;
+    currentPage=page;
+    document.querySelectorAll('.page-tab').forEach(function(t){
+      t.classList.toggle('active',t.dataset.page===page);
+    });
+    document.querySelectorAll('.page-section').forEach(function(s){
+      if(s.dataset.page===page){s.classList.add('active');}else{s.classList.remove('active');}
+    });
+  }
+});
+</script>
+</body>
+</html>
